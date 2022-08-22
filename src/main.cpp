@@ -1,21 +1,19 @@
 #include <algorithm>
-#include <cstring>
-#include <ios>
 #include <iostream>
-#include <iterator>
-#include <list>
-#include <memory>
-#include <type_traits>
 #include <vector>
 
-#include <co/log.h>
-
-#include <sort/heapSort.hpp>
+#include "sort/minHeap.hpp"
+#include "sort/quickSort2.hpp"
 
 auto main() -> int {
-    int arr[] {1, 2, 0, 4};
+    std::vector<int> vec {1, 3, 2, 5, -1, 0};
 
-    
+    dsa::quickSort3(vec.begin(), vec.end());
+
+    for (int i : vec) {
+        std::cout << i << ' ';
+    }
+    std::cout << '\n';
 
     return 0;
 }

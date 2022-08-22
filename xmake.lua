@@ -6,17 +6,8 @@ target("pjc1")
     add_files("src/*.cpp")
 
     add_includedirs(
-        "include",
-        "D:/WorkSpace/Packages/coost/include"
+        "include"
     )
-
-    add_linkdirs(
-        "D:/WorkSpace/Packages/coost/build/src"
-    )
-
-    add_ldflags("-lco", {force = true})
-
-    add_syslinks("ws2_32")
 
 target_end()
 

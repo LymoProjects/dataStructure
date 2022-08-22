@@ -3,12 +3,13 @@
 #include <sort/insertionSort.hpp>
 #include <utility>
 
-namespace dsa {
-    template <typename It>
-    auto partition(It begin, It end) -> std::pair<It, It> {
-        std::pair<It, It> bases(begin, end);
+namespace dsa {  
+    template <typename IteratorType>
+    auto paritition(IteratorType begin, IteratorType end) 
+    -> std::pair<IteratorType, IteratorType> {
+        std::pair<IteratorType, IteratorType> bases(begin, end);
 
-        It moving {begin + 1};
+        IteratorType moving {begin + 1};
 
         while (moving != bases.second) {
             if (*moving < *begin) {
@@ -27,17 +28,15 @@ namespace dsa {
         return bases;
     }
 
-    template <typename It>
-    void quickSort2(It begin, It end) {
+    template <typename IteratorType>
+    void quickSort3(IteratorType begin, IteratorType end) {
         if (end - begin <= 1) {
-            insertionSort(begin, end);
-
             return;
         }
 
-        std::pair<It, It> bases {partition(begin, end)};
+        std::pair<IteratorType, IteratorType> bases(paritition(begin, end));
 
-        quickSort2(begin, bases.first);
-        quickSort2(bases.second, end);
+        quickSort3(begin, bases.first);
+        quickSort3(bases.second, end); 
     }
 }
