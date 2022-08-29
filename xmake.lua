@@ -13,7 +13,7 @@ target("pjc1")
 
 target_end()
 
-set_languages("cxx20")
+set_languages("cxxlatest")
 
 --
 -- If you want to known more usage about xmake, please see https://xmake.io
