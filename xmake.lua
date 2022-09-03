@@ -10,7 +10,6 @@ target("pjc1")
     add_includedirs(
         "include"
     )
-
 target_end()
 
 set_languages("cxx20")
