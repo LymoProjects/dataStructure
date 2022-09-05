@@ -8,22 +8,6 @@
 
 namespace dsa {
     template <typename ValueType>
-    struct edge {
-        explicit edge()
-        : from {}, to {}, value {} {}
-        explicit edge(size_t from_, size_t to_, ValueType value_ )
-        : from(from_), to(to_), value(std::move(value_)) {}
-
-        auto operator<(edge const & e_) const -> bool {
-            return value < e_.value;
-        }
-
-        size_t from;
-        size_t to;
-        ValueType value;
-    };
-
-    template <typename ValueType>
     auto krusk(gragh<ValueType> const & g) -> std::vector<edge<ValueType>> {
         std::deque<edge<ValueType>> edges;
 

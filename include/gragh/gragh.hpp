@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <cstddef>
 
 namespace dsa {
     template <typename ValueType>
@@ -12,7 +13,7 @@ namespace dsa {
         auto getNodeSize() const -> size_t;
 
         void setEdge(size_t from, size_t to, ValueType value);
-        auto getEdges(size_t from) const -> std::vector<int> const &;
+        auto getEdges(size_t from) const -> std::vector<ValueType> const &;
     private:
         std::vector<std::vector<ValueType>> edges;
         bool direction;
@@ -56,7 +57,23 @@ namespace dsa {
     }
 
     template<typename ValueType>
-    auto gragh<ValueType>::getEdges(size_t from) const -> std::vector<int> const & {
+    auto gragh<ValueType>::getEdges(size_t from) const -> std::vector<ValueType> const & {
         return edges.at(from);
     }
+
+    template <typename ValueType>
+    struct edge {
+        explicit edge()
+        : from {}, to {}, value {} {}
+        explicit edge(size_t from_, size_t to_, ValueType value_ )
+        : from(from_), to(to_), value(std::move(value_)) {}
+
+        auto operator<(edge const & e_) const -> bool {
+            return value < e_.value;
+        }
+
+        size_t from;
+        size_t to;
+        ValueType value;
+    };
 }
