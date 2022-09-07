@@ -3,6 +3,8 @@ add_rules("mode.debug", "mode.release")
 target("pjc1")
     set_kind("binary")
 
+    -- set_optimize("faster")
+
     add_files(
         "src/*.cpp"
     )
