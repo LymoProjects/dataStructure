@@ -1,22 +1,26 @@
 #pragma once
 
-#include <algorithm>
+#include <functional>
 
-template <typename It>
-void selectionSort(It begin, It end) {
-    if (end - begin <= 1) {
-        return;
+namespace dsa {
+template <typename IteratorType,
+          typename Comp = std::less<
+              typename std::iterator_traits<IteratorType>::value_type>>
+void selectionSort(IteratorType begin, IteratorType end, Comp cmp = Comp{}) {
+  if (end - begin < 1) {
+    return;
+  }
+
+  for (IteratorType i{begin}; i != end; ++i) {
+    IteratorType flag{i};
+
+    for (IteratorType j{i + 1}; j != end; ++j) {
+      if (cmp(*j, *flag)) {
+        flag = j;
+      }
     }
 
-    for (It i {begin}; i != end; ++i) {
-        It minIter {i};
-
-        for (It j {minIter + 1}; j != end; ++j) {
-            if (*j < *minIter) {
-                minIter = j;
-            }
-        }
-
-        std::swap(*minIter, *i);
-    }
+    std::swap(*i, *flag);
+  }
 }
+} // namespace dsa

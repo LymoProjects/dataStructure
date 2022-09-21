@@ -1,9 +1,11 @@
 add_rules("mode.debug", "mode.release")
 
 target("pjc1")
+    set_languages("cxx20")
+
     set_kind("binary")
 
-    set_optimize("faster")
+    --set_optimize("faster")
 
     add_files(
         "src/*.cpp"
@@ -13,8 +15,6 @@ target("pjc1")
         "include"
     )
 target_end()
-
-set_languages("cxx20")
 
 --
 -- If you want to known more usage about xmake, please see https://xmake.io

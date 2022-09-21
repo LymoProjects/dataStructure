@@ -1,30 +1,30 @@
 #pragma once
 
-#include <type_traits>
-#include <utility>
+#include <functional>
 
 namespace dsa {
-    void insertionSort(auto begin, auto end) {
-        static_assert(std::is_same_v<decltype(begin), decltype(end)>);
+template <typename IteratorType,
+          typename Comp = std::less<
+              typename std::iterator_traits<IteratorType>::value_type>>
+void insertionSort(IteratorType begin, IteratorType end, Comp cmp = Comp{}) {
+  if (end - begin < 2) {
+    return;
+  }
 
-        if (end - begin <= 1) {
-            return;
-        }
+  for (IteratorType i{begin + 1}; i != end; ++i) {
+    typename std::iterator_traits<IteratorType>::value_type temp{std::move(*i)};
+    IteratorType moving{i};
 
-        for (auto i {begin + 1}; i != end; ++i) {
-            std::remove_cvref_t<decltype(*i)> local {std::move(*i)};
-
-            auto moving {i};
-
-            for(; moving != begin; --moving) {
-                if (local < *(moving - 1)) {
-                    *moving = std::move(*(moving - 1));
-                } else {
-                    break;
-                }
-            }
-
-            *moving = std::move(local);
-        }
+    while (moving != begin) {
+      if (cmp(temp, *(moving - 1))) {
+        *moving = std::move(*(moving - 1));
+        --moving;
+      } else {
+        break;
+      }
     }
+
+    *moving = std::move(temp);
+  }
 }
+} // namespace dsa

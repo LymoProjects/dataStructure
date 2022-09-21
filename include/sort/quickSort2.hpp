@@ -1,42 +1,44 @@
 #pragma once
 
-#include <sort/insertionSort.hpp>
+#include <functional>
 #include <utility>
 
-namespace dsa {  
-    template <typename IteratorType>
-    auto paritition(IteratorType begin, IteratorType end) 
+namespace dsa {
+template <typename IteratorType, typename CompFuncType>
+auto partition3(IteratorType begin, IteratorType end, CompFuncType &&cmp)
     -> std::pair<IteratorType, IteratorType> {
-        std::pair<IteratorType, IteratorType> bases(begin, end);
+  std::pair<IteratorType, IteratorType> bases(begin, end);
+  IteratorType moving{begin + 1};
 
-        IteratorType moving {begin + 1};
+  while (moving != bases.second) {
+    if (cmp(*moving, *begin)) {
+      std::swap(*moving, *(++bases.first));
 
-        while (moving != bases.second) {
-            if (*moving < *begin) {
-                std::swap(*moving, *(++bases.first));
-            } else if (*begin < *moving) {
-                std::swap(*moving, *(--bases.second));
-
-                continue;
-            }
-
-            ++moving;
-        }
-
-        std::swap(*begin, *bases.first);
-
-        return bases;
+      ++moving;
+    } else if (*moving == *begin) {
+      ++moving;
+    } else {
+      std::swap(*moving, *(--bases.second));
     }
+  }
 
-    template <typename IteratorType>
-    void quickSort3(IteratorType begin, IteratorType end) {
-        if (end - begin <= 1) {
-            return;
-        }
+  std::swap(*begin, *bases.first);
 
-        std::pair<IteratorType, IteratorType> bases(paritition(begin, end));
-
-        quickSort3(begin, bases.first);
-        quickSort3(bases.second, end); 
-    }
+  return bases;
 }
+
+template <typename IteratorType,
+          typename CompFuncType = std::less<
+              typename std::iterator_traits<IteratorType>::value_type>>
+void quickSort3(IteratorType begin, IteratorType end,
+                CompFuncType &&cmp = CompFuncType{}) {
+  if (end - begin < 2) {
+    return;
+  }
+
+  std::pair<IteratorType, IteratorType> bases{dsa::partition3(begin, end, cmp)};
+
+  quickSort3(begin, bases.first, cmp);
+  quickSort3(bases.second, end, cmp);
+}
+} // namespace dsa

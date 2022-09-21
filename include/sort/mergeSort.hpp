@@ -1,73 +1,62 @@
 #pragma once
 
-#include <type_traits>
-#include <utility>
+#include <algorithm>
+#include <functional>
 
 namespace dsa {
-    template <typename IteratorType>
-    void merge(IteratorType begin, IteratorType end) {
+template <typename IteratorType, typename CompFuncType>
+void mergeOperation(IteratorType begin, IteratorType end, CompFuncType cmp) {
+  std::vector<typename std::iterator_traits<IteratorType>::value_type> local;
 
+  for (IteratorType i{begin}; i != end; ++i) {
+    local.emplace_back(std::move(*i));
+  }
+
+  IteratorType lBegin{local.begin()};
+  IteratorType rBegin{((local.end() - local.begin()) >> 1) + local.begin()};
+  IteratorType lEnd{rBegin};
+
+  for (IteratorType i{begin}; i != end; ++i) {
+    if (lBegin == lEnd) {
+      *i = std::move(*rBegin);
+      ++rBegin;
+
+      continue;
     }
 
-    template <typename IteratorType>
-    void mergeSort(IteratorType begin, IteratorType end) {
-        
+    if (rBegin == local.end()) {
+      *i = std::move(*lBegin);
+      ++lBegin;
+
+      continue;
     }
+
+    if (cmp(*lBegin, *rBegin)) {
+      *i = std::move(*lBegin);
+      ++lBegin;
+    } else {
+      *i = std::move(*rBegin);
+      ++rBegin;
+    }
+  }
 }
 
-void merge(auto begin, auto end) {
-    static_assert(std::is_same_v<decltype(begin), decltype(end)>);
+template <typename IteratorType,
+          typename CompFuncType = std::less<
+              typename std::iterator_traits<IteratorType>::value_type>>
+void mergeSort(IteratorType begin, IteratorType end,
+               CompFuncType cmp = CompFuncType{}) {
+  if (end - begin < 2) {
+    return;
+  }
 
-    std::vector<std::remove_cvref_t<decltype(*begin)>> vec;
+  IteratorType mid{((end - begin) >> 1) + begin};
 
-    for (auto i {begin}; i != end; ++i) {
-        vec.push_back(std::move(*i));
-    }
+  mergeSort(begin, mid, cmp);
+  mergeSort(mid, end, cmp);
 
-    auto lBegin {vec.begin()};
-    auto lEnd {((vec.end() - vec.begin()) >> 1) + vec.begin()};
-    auto rBegin {lEnd};
-
-    for (auto i {begin}; i != end; ++i) {
-        if (lBegin == lEnd) {
-            *i = std::move(*rBegin);
-            ++rBegin;
-
-            continue;
-        }
-
-        if (rBegin == vec.end()) {
-            *i = std::move(*lBegin);
-            ++lBegin;
-
-            continue;
-        }
-
-        if (*lBegin < *rBegin) {
-            *i = std::move(*lBegin);
-            ++lBegin;
-        } else {
-            *i = std::move(*rBegin);
-            ++rBegin;
-        }
-    }
+  if (cmp(*mid, *(mid - 1))) {
+    mergeOperation(begin, end, cmp);
+  }
 }
-
-void mergeSort(auto begin, auto end) {
-    static_assert(std::is_same_v<decltype(begin), decltype(end)>);
-
-    if (end - begin <= 1) {
-        insertionSort(begin, end);
-
-        return;
-    }
-
-    auto mid {((end - begin) >> 1) + begin};
-
-    mergeSort(begin, mid);
-    mergeSort(mid, end);
-
-    if (*mid < *(mid - 1)) {
-        merge(begin, end);
-    }
-}
+} // namespace dsa
