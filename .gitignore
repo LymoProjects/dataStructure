@@ -1,4 +1,6 @@
 .cache/
+.ccls-cache/
+.vscode/
 .xmake/
 build/
 src/questions/

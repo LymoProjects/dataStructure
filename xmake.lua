@@ -8,7 +8,8 @@ target("pjc1")
     --set_optimize("faster")
 
     add_files(
-        "src/*.cpp"
+        "src/*.cpp",
+        "src/questions/*.cpp"
     )
 
     add_includedirs(
