@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <functional>
+#include <vector>
 
 namespace dsa {
 template <typename IteratorType, typename CompFuncType>

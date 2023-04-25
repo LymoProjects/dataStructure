@@ -4,5 +4,6 @@
 .xmake/
 build/
 src/questions/
+cmake-build-release/
 
 compile_commands.json

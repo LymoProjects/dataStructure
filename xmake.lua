@@ -1,15 +1,13 @@
 add_rules("mode.debug", "mode.release")
 
+set_languages("c++20")
+
 target("pjc1")
-    set_languages("cxx20")
 
     set_kind("binary")
 
-    --set_optimize("faster")
-
     add_files(
-        "src/*.cpp",
-        "src/questions/*.cpp"
+        "src/*.cpp"
     )
 
     add_includedirs(
