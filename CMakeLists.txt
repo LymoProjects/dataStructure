@@ -15,6 +15,8 @@ target_include_directories(pjc1 PRIVATE
     include
 )
 target_compile_options(pjc1 PRIVATE
+    $<$<COMPILE_LANGUAGE:C>:/utf-8>
+    $<$<COMPILE_LANGUAGE:CXX>:/utf-8>
     $<$<COMPILE_LANGUAGE:C>:-DNDEBUG>
     $<$<COMPILE_LANGUAGE:CXX>:-DNDEBUG>
 )
