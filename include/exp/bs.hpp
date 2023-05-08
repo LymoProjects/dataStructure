@@ -4,34 +4,16 @@
 
 auto bs(auto begin, auto end, auto const & target) {
     while (begin != end) {
-        auto mid {std::next(begin, std::distance(begin, end) >> 1)};
+        auto mid {std::ranges::next(begin, std::ranges::distance(begin, end) >> 1)};
 
-        if (target < *mid) {
+        if (*mid < target) {
+            begin = std::next(mid);
+        } else if (target < *mid) {
             end = mid;
-        } else if (*mid < target) {
-            begin = mid + 1;
         } else {
             return mid;
         }
     }
 
-    return end;
-}
-
-namespace exp__ {
-    auto bs(auto begin, auto end, auto const & target) {
-        while (begin != end) {
-            auto mid {std::next(begin, std::distance(begin, end) >> 1)};
-
-            if (target < *mid) {
-                end = mid;
-            } else if (*mid < target) {
-                begin = std::next(mid);
-            } else {
-                return mid;
-            }
-        }
-
-        return end;
-    }
+    return decltype(begin) {};
 }
