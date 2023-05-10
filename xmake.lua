@@ -1,6 +1,6 @@
 add_rules("mode.debug", "mode.release")
 
-set_languages("c++20")
+set_languages("c++latest")
 
 target("pjc1")
     set_kind("binary")
@@ -8,7 +8,8 @@ target("pjc1")
     add_cxflags("/utf-8")
 
     add_files(
-        "src/*.cpp"
+        "src/*.cxx",
+        "src/test/*.ixx"
     )
 
     add_includedirs(

@@ -11,6 +11,28 @@ project(pjc1 LANGUAGES CXX C)
 add_executable(pjc1 "")
 set_target_properties(pjc1 PROPERTIES OUTPUT_NAME "pjc1")
 set_target_properties(pjc1 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/build/windows/x64/release")
+add_custom_command(OUTPUT output_pjc1_852C9CDC
+    COMMAND echo [  0%]: compiling.headerunit.release iostream
+    COMMAND D:/Aps/VSPF22/Professional/VC/Tools/MSVC/14.35.32215/bin/HostX64/x64/cl.exe -nologo -O2 -fp:fast -std:c++latest -I${CMAKE_SOURCE_DIR}/include /EHsc -experimental:module /utf-8 -DNDEBUG -TP -c -exportHeader -headerName:angle iostream -ifcOutput ${CMAKE_SOURCE_DIR}/build/stlmodules/cache/release -Fo${CMAKE_SOURCE_DIR}/build/stlmodules/cache/release/iostream.ifc.obj
+    COMMAND echo [  0%]: compiling.headerunit.release thread
+    COMMAND D:/Aps/VSPF22/Professional/VC/Tools/MSVC/14.35.32215/bin/HostX64/x64/cl.exe -nologo -O2 -fp:fast -std:c++latest -I${CMAKE_SOURCE_DIR}/include /EHsc -experimental:module /utf-8 -DNDEBUG -TP -c -exportHeader -headerName:angle thread -ifcOutput ${CMAKE_SOURCE_DIR}/build/stlmodules/cache/release -Fo${CMAKE_SOURCE_DIR}/build/stlmodules/cache/release/thread.ifc.obj
+    COMMAND echo [  0%]: compiling.headerunit.release future
+    COMMAND D:/Aps/VSPF22/Professional/VC/Tools/MSVC/14.35.32215/bin/HostX64/x64/cl.exe -nologo -O2 -fp:fast -std:c++latest -I${CMAKE_SOURCE_DIR}/include /EHsc -experimental:module /utf-8 -DNDEBUG -TP -c -exportHeader -headerName:angle future -ifcOutput ${CMAKE_SOURCE_DIR}/build/stlmodules/cache/release -Fo${CMAKE_SOURCE_DIR}/build/stlmodules/cache/release/future.ifc.obj
+    COMMAND echo [  0%]: compiling.module.release test
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_SOURCE_DIR}/build/.objs/pjc1/windows/x64/release/src/test
+    COMMAND D:/Aps/VSPF22/Professional/VC/Tools/MSVC/14.35.32215/bin/HostX64/x64/cl.exe -nologo -O2 -fp:fast -std:c++latest -I${CMAKE_SOURCE_DIR}/include /EHsc -experimental:module /utf-8 -DNDEBUG -TP -c ${CMAKE_SOURCE_DIR}/src/test/test.ixx -Fo${CMAKE_SOURCE_DIR}/build/.objs/pjc1/windows/x64/release/src/test/test.ixx.obj -ifcOutput ${CMAKE_SOURCE_DIR}/build/.gens/pjc1/windows/x64/release/rules/modules/cache/0e6e2eca/test.ifc -interface -headerUnit:angle iostream=${CMAKE_SOURCE_DIR}/build/stlmodules/cache/release/iostream.ifc
+    COMMAND echo [  0%]: compiling.module.release std
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_SOURCE_DIR}/build/stlmodules/cache/release
+    COMMAND D:/Aps/VSPF22/Professional/VC/Tools/MSVC/14.35.32215/bin/HostX64/x64/cl.exe -nologo -O2 -fp:fast -std:c++latest -I${CMAKE_SOURCE_DIR}/include /EHsc -experimental:module /utf-8 -DNDEBUG -TP -c D:/Aps/VSPF22/Professional/VC/Tools/MSVC/14.35.32215/modules/std.ixx -Fo${CMAKE_SOURCE_DIR}/build/stlmodules/cache/release/std.ixx.ifc.obj -ifcOutput ${CMAKE_SOURCE_DIR}/build/stlmodules/cache/release/std.ixx.ifc -interface
+    COMMAND echo [  0%]: compiling.module.release std.compat
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_SOURCE_DIR}/build/stlmodules/cache/release
+    COMMAND D:/Aps/VSPF22/Professional/VC/Tools/MSVC/14.35.32215/bin/HostX64/x64/cl.exe -nologo -O2 -fp:fast -std:c++latest -I${CMAKE_SOURCE_DIR}/include /EHsc -experimental:module /utf-8 -DNDEBUG -TP -c D:/Aps/VSPF22/Professional/VC/Tools/MSVC/14.35.32215/modules/std.compat.ixx -Fo${CMAKE_SOURCE_DIR}/build/stlmodules/cache/release/std.compat.ixx.ifc.obj -ifcOutput ${CMAKE_SOURCE_DIR}/build/stlmodules/cache/release/std.compat.ixx.ifc -interface -reference std=${CMAKE_SOURCE_DIR}/build/stlmodules/cache/release/std.ixx.ifc
+    VERBATIM
+)
+add_custom_target(target_pjc1_852C9CDC
+    DEPENDS output_pjc1_852C9CDC
+)
+add_dependencies(pjc1 target_pjc1_852C9CDC)
 target_include_directories(pjc1 PRIVATE
     include
 )
@@ -19,14 +41,16 @@ target_compile_options(pjc1 PRIVATE
     $<$<COMPILE_LANGUAGE:CXX>:/utf-8>
     $<$<COMPILE_LANGUAGE:C>:-DNDEBUG>
     $<$<COMPILE_LANGUAGE:CXX>:-DNDEBUG>
+    $<$<COMPILE_LANGUAGE:CXX>:-experimental:module>
+)
+set_source_files_properties(${CMAKE_SOURCE_DIR}/src/main.cxx PROPERTIES COMPILE_OPTIONS
+    "$<$<COMPILE_LANGUAGE:CXX>:-TP>;$<$<COMPILE_LANGUAGE:CXX>:-c>;$<$<COMPILE_LANGUAGE:CXX>:${CMAKE_SOURCE_DIR}/src/main.cxx>;$<$<COMPILE_LANGUAGE:CXX>:-Fo${CMAKE_SOURCE_DIR}/build/.objs/pjc1/windows/x64/release/src/main.cxx.obj>;$<$<COMPILE_LANGUAGE:CXX>:-headerUnit:angle>;$<$<COMPILE_LANGUAGE:CXX>:future=${CMAKE_SOURCE_DIR}/build/stlmodules/cache/release/future.ifc>;$<$<COMPILE_LANGUAGE:CXX>:-headerUnit:angle>;$<$<COMPILE_LANGUAGE:CXX>:iostream=${CMAKE_SOURCE_DIR}/build/stlmodules/cache/release/iostream.ifc>;$<$<COMPILE_LANGUAGE:CXX>:-reference>;$<$<COMPILE_LANGUAGE:CXX>:std=${CMAKE_SOURCE_DIR}/build/stlmodules/cache/release/std.ixx.ifc>;$<$<COMPILE_LANGUAGE:CXX>:-headerUnit:angle>;$<$<COMPILE_LANGUAGE:CXX>:thread=${CMAKE_SOURCE_DIR}/build/stlmodules/cache/release/thread.ifc>"
 )
 if(CMAKE_CXX_COMPILER_FRONTEND_VARIANT STREQUAL "MSVC")
     target_compile_options(pjc1 PRIVATE /EHsc)
 else()
     target_compile_options(pjc1 PRIVATE -fcxx-exceptions)
 endif()
-set_target_properties(pjc1 PROPERTIES CXX_EXTENSIONS OFF)
-target_compile_features(pjc1 PRIVATE cxx_std_20)
 if(MSVC)
     target_compile_options(pjc1 PRIVATE $<$<CONFIG:Release>:-Ox -fp:fast>)
 else()
@@ -40,7 +64,10 @@ if(MSVC)
     set_property(TARGET pjc1 PROPERTY
         MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 endif()
+target_link_libraries(pjc1 PRIVATE
+    ${CMAKE_SOURCE_DIR}/build/.objs/pjc1/windows/x64/release/src/test/test.ixx.obj
+)
 target_sources(pjc1 PRIVATE
-    src/main.cpp
+    src/main.cxx
 )
 
