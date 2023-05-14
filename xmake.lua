@@ -2,19 +2,23 @@ add_rules("mode.debug", "mode.release")
 
 set_languages("c++latest")
 
+add_requires("coost", {configs = {libcurl = true, openssl = true}})
+
 target("pjc1")
     set_kind("binary")
 
     add_cxflags("/utf-8")
 
     add_files(
-        "src/*.cxx",
+        "src/*.ixx",
         "src/test/*.ixx"
     )
 
     add_includedirs(
         "include"
     )
+
+    add_packages("coost")
 target_end()
 
 --
