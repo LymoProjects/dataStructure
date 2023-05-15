@@ -1,6 +1,5 @@
 #pragma once
 
-#include "exp/mergeSort.hpp"
 #include <iterator>
 #include <vector>
 
@@ -11,88 +10,39 @@ auto mergeSort(auto begin, auto end, auto && comp) -> void {
 
     auto mid {std::next(begin, std::distance(begin, end) >> 1)};
 
-    mergeSort(begin, mid, comp);
-    mergeSort(mid, end, comp);
+    mergeSort(begin, mid);
+    mergeSort(mid, end);
 
-    if (!comp(*(mid - 1), *mid)) {
+    if (comp(*mid, *std::prev(mid))) {
         std::vector<typename std::iterator_traits<decltype(begin)>::value_type> tmp;
 
         for (auto mover {begin}; mover != end; ++mover) {
-            tmp.emplace_back(std::move(*mover));
+            tmp.emplace_back(*mover);
         }
 
-        auto tmpLeftBegin {tmp.begin()};
-        auto tmpRightEnd {tmp.end()};
-        auto tmpLeftEnd {std::next(tmpLeftBegin, std::distance(tmpLeftBegin, tmpRightEnd) >> 1)};
-        auto tmpRightBegin {tmpLeftEnd};
+        auto leftBegin {tmp.begin()};
+        auto rightBegin {std::next(tmp.begin(), std::distance(tmp.begin(), tmp.end()) >> 1)};
+        auto leftEnd {rightBegin};
+        auto rightEnd {tmp.end()};
 
         for (auto mover {begin}; mover != end; ++mover) {
-            if (tmpLeftBegin == tmpLeftEnd) {
-                *mover = std::move(*tmpRightBegin);
+            if (leftBegin == leftEnd) {
+                *mover = std::move(*rightBegin);
 
-                ++tmpRightBegin;
-            } else if (tmpRightBegin == tmpRightEnd) {
-                *mover = std::move(*tmpLeftBegin);
+                ++rightBegin;
+            } else if (rightBegin == rightEnd) {
+                *mover = std::move(*leftBegin);
 
-                ++tmpLeftBegin;
+                ++leftBegin;
             } else {
-                if (comp(*tmpRightBegin, *tmpLeftBegin)) {
-                    *mover = std::move(*tmpRightBegin);
-
-                    ++tmpRightBegin;
-                } else {
-                    *mover = std::move(*tmpLeftBegin);
-
-                    ++tmpLeftBegin;
-                }
-            }
-        }
-
-    }
-}
-
-namespace exp__ {
-    auto mergeSort(auto begin, auto end, auto && comp) -> void {
-        if (std::distance(begin, end) < 2) {
-            return;
-        }
-
-        auto mid {std::next(begin, std::distance(begin, end) >> 1)};
-
-        mergeSort(begin, mid, comp);
-        mergeSort(mid, end, comp);
-
-        if (comp(mid, *std::prev(mid))) {
-            std::vector<typename std::iterator_traits<decltype(begin)>::value_type> tmp;
-
-            for (auto mover {begin}; mover != end; ++mover) {
-                tmp.emplace_back(std::move(*mover));
-            }
-
-            auto leftBegin {tmp.begin()};
-            auto leftEnd {std::next(tmp.begin(), std::distance(tmp.begin(), tmp.end()) >> 1)};
-            auto rightBegin {leftEnd};
-            auto rightEnd {tmp.end()};
-
-            for (auto mover {begin}; mover != end; ++mover) {
-                if (leftBegin == leftEnd) {
-                    *mover = std::move(*rightBegin);
-
-                    ++rightBegin;
-                } else if (rightBegin == rightEnd) {
+                if (comp(*leftBegin, *rightBegin)) {
                     *mover = std::move(*leftBegin);
 
                     ++leftBegin;
                 } else {
-                    if (comp(*leftBegin, *rightBegin)) {
-                        *mover = std::move(*leftBegin);
+                    *mover = std::move(*rightBegin);
 
-                        ++leftBegin;
-                    } else {
-                        *mover = std::move(*rightBegin);
-
-                        ++rightBegin;
-                    }
+                    ++rightBegin;
                 }
             }
         }

@@ -11,7 +11,7 @@ namespace exp__ {
     public:
         explicit
         gragh(std::size_t nodeSize, bool direct = false)
-        : allEdges(nodeSize, std::vector<weightType>(nodeSize, weightType {})), isDirected(direct){ }
+        : allEdges(nodeSize, std::vector<weightType>(nodeSize)), isDirected(direct){ }
 
         auto addEdge(std::size_t node1, std::size_t node2, weightType const & weight) -> void {
             allEdges.at(node1).at(node2) = weight;

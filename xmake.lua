@@ -1,6 +1,6 @@
 add_rules("mode.debug", "mode.release")
 
-set_languages("c++latest")
+set_languages("c++20")
 
 add_requires("coost", {configs = {libcurl = true, openssl = true}})
 
