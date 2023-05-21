@@ -9,7 +9,6 @@ auto insertionSort(auto begin, auto end, auto && comp) -> void {
 
     for (auto mover {std::next(begin)}; mover != end; ++mover) {
         auto tmp {std::move(*mover)};
-
         auto finalPos {mover};
 
         while (finalPos != begin) {
