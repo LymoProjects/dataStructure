@@ -1,6 +1,6 @@
 add_rules("mode.debug", "mode.release")
 
-set_languages("c++20")
+set_languages("c++23")
 
 add_requires("coost", {configs = {libcurl = true, openssl = true}})
 
@@ -11,7 +11,7 @@ target("pjc1")
 
     add_files(
         "src/*.ixx",
-        "src/test/*.ixx"
+        "src/impl/*.ixx"
     )
 
     add_includedirs(

@@ -11,21 +11,25 @@ project(pjc1 LANGUAGES CXX C)
 add_executable(pjc1 "")
 set_target_properties(pjc1 PROPERTIES OUTPUT_NAME "pjc1")
 set_target_properties(pjc1 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/build/windows/x64/release")
-add_custom_command(OUTPUT output_pjc1_8F0AB1F5
-    COMMAND echo [  0%]: compiling.headerunit.release iostream
-    COMMAND D:/Aps/VSPF22/Professional/VC/Tools/MSVC/14.36.32532/bin/HostX64/x64/cl.exe -nologo -O2 -fp:fast -std:c++20 -I${CMAKE_SOURCE_DIR}/include -DCURL_STATICLIB /EHsc -external:W0 -external:IC:/Users/liu01/AppData/Local/.xmake/packages/c/coost/v3.0.0/8740acc100024f88bd62575f6add4dcd/include -external:W0 -external:IC:/Users/liu01/AppData/Local/.xmake/packages/l/libcurl/8.0.1/ea95e137fcdc4a45bfe90148d97ee824/include -external:W0 -external:IC:/Users/liu01/AppData/Local/.xmake/packages/o/openssl/1.1.1-t/9458079689e342b58f2f2e8d4b2fb860/include -experimental:module /utf-8 -DNDEBUG -TP -c -exportHeader -headerName:angle iostream -ifcOutput ${CMAKE_SOURCE_DIR}/build/stlmodules/cache/release -Fo${CMAKE_SOURCE_DIR}/build/stlmodules/cache/release/iostream.ifc.obj
-    COMMAND echo [  0%]: compiling.module.release test
-    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_SOURCE_DIR}/build/.objs/pjc1/windows/x64/release/src/test
-    COMMAND D:/Aps/VSPF22/Professional/VC/Tools/MSVC/14.36.32532/bin/HostX64/x64/cl.exe -nologo -O2 -fp:fast -std:c++20 -I${CMAKE_SOURCE_DIR}/include -DCURL_STATICLIB /EHsc -external:W0 -external:IC:/Users/liu01/AppData/Local/.xmake/packages/c/coost/v3.0.0/8740acc100024f88bd62575f6add4dcd/include -external:W0 -external:IC:/Users/liu01/AppData/Local/.xmake/packages/l/libcurl/8.0.1/ea95e137fcdc4a45bfe90148d97ee824/include -external:W0 -external:IC:/Users/liu01/AppData/Local/.xmake/packages/o/openssl/1.1.1-t/9458079689e342b58f2f2e8d4b2fb860/include -experimental:module /utf-8 -DNDEBUG -TP -c ${CMAKE_SOURCE_DIR}/src/test/test.ixx -Fo${CMAKE_SOURCE_DIR}/build/.objs/pjc1/windows/x64/release/src/test/test.ixx.obj -ifcOutput ${CMAKE_SOURCE_DIR}/build/.gens/pjc1/windows/x64/release/rules/modules/cache/0e6e2eca/test.ifc -interface -headerUnit:angle iostream=${CMAKE_SOURCE_DIR}/build/stlmodules/cache/release/iostream.ifc
+add_custom_command(OUTPUT output_pjc1_1F9C35D2
+    COMMAND echo [  0%]: compiling.module.release src\impl\sort.ixx
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_SOURCE_DIR}/build/.objs/pjc1/windows/x64/release/src/impl
+    COMMAND D:/Aps/VSPF22/PfsnPreview/VC/Tools/MSVC/14.37.32705/bin/HostX64/x64/cl.exe -nologo -O2 -fp:fast -std:c++latest -I${CMAKE_SOURCE_DIR}/include -DCURL_STATICLIB /EHsc -external:W0 -external:IC:/Users/liu01/AppData/Local/.xmake/packages/c/coost/v3.0.0/8740acc100024f88bd62575f6add4dcd/include -external:W0 -external:IC:/Users/liu01/AppData/Local/.xmake/packages/l/libcurl/8.0.1/ea95e137fcdc4a45bfe90148d97ee824/include -external:W0 -external:IC:/Users/liu01/AppData/Local/.xmake/packages/o/openssl/1.1.1-t/9458079689e342b58f2f2e8d4b2fb860/include -experimental:module /utf-8 -DNDEBUG -TP -c ${CMAKE_SOURCE_DIR}/src/impl/sort.ixx -Fo${CMAKE_SOURCE_DIR}/build/.objs/pjc1/windows/x64/release/src/impl/sort.ixx.obj
     COMMAND echo [  0%]: compiling.module.release src\main.ixx
     COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_SOURCE_DIR}/build/.objs/pjc1/windows/x64/release/src
-    COMMAND D:/Aps/VSPF22/Professional/VC/Tools/MSVC/14.36.32532/bin/HostX64/x64/cl.exe -nologo -O2 -fp:fast -std:c++20 -I${CMAKE_SOURCE_DIR}/include -DCURL_STATICLIB /EHsc -external:W0 -external:IC:/Users/liu01/AppData/Local/.xmake/packages/c/coost/v3.0.0/8740acc100024f88bd62575f6add4dcd/include -external:W0 -external:IC:/Users/liu01/AppData/Local/.xmake/packages/l/libcurl/8.0.1/ea95e137fcdc4a45bfe90148d97ee824/include -external:W0 -external:IC:/Users/liu01/AppData/Local/.xmake/packages/o/openssl/1.1.1-t/9458079689e342b58f2f2e8d4b2fb860/include -experimental:module /utf-8 -DNDEBUG -TP -c ${CMAKE_SOURCE_DIR}/src/main.ixx -Fo${CMAKE_SOURCE_DIR}/build/.objs/pjc1/windows/x64/release/src/main.ixx.obj
+    COMMAND D:/Aps/VSPF22/PfsnPreview/VC/Tools/MSVC/14.37.32705/bin/HostX64/x64/cl.exe -nologo -O2 -fp:fast -std:c++latest -I${CMAKE_SOURCE_DIR}/include -DCURL_STATICLIB /EHsc -external:W0 -external:IC:/Users/liu01/AppData/Local/.xmake/packages/c/coost/v3.0.0/8740acc100024f88bd62575f6add4dcd/include -external:W0 -external:IC:/Users/liu01/AppData/Local/.xmake/packages/l/libcurl/8.0.1/ea95e137fcdc4a45bfe90148d97ee824/include -external:W0 -external:IC:/Users/liu01/AppData/Local/.xmake/packages/o/openssl/1.1.1-t/9458079689e342b58f2f2e8d4b2fb860/include -experimental:module /utf-8 -DNDEBUG -TP -c ${CMAKE_SOURCE_DIR}/src/main.ixx -Fo${CMAKE_SOURCE_DIR}/build/.objs/pjc1/windows/x64/release/src/main.ixx.obj
+    COMMAND echo [  0%]: compiling.module.release std
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_SOURCE_DIR}/build/stlmodules/cache/release
+    COMMAND D:/Aps/VSPF22/PfsnPreview/VC/Tools/MSVC/14.37.32705/bin/HostX64/x64/cl.exe -nologo -O2 -fp:fast -std:c++latest -I${CMAKE_SOURCE_DIR}/include -DCURL_STATICLIB /EHsc -external:W0 -external:IC:/Users/liu01/AppData/Local/.xmake/packages/c/coost/v3.0.0/8740acc100024f88bd62575f6add4dcd/include -external:W0 -external:IC:/Users/liu01/AppData/Local/.xmake/packages/l/libcurl/8.0.1/ea95e137fcdc4a45bfe90148d97ee824/include -external:W0 -external:IC:/Users/liu01/AppData/Local/.xmake/packages/o/openssl/1.1.1-t/9458079689e342b58f2f2e8d4b2fb860/include -experimental:module /utf-8 -DNDEBUG -TP -c D:/Aps/VSPF22/PfsnPreview/VC/Tools/MSVC/14.37.32705/modules/std.ixx -Fo${CMAKE_SOURCE_DIR}/build/stlmodules/cache/release/std.ixx.ifc.obj -ifcOutput ${CMAKE_SOURCE_DIR}/build/stlmodules/cache/release/std.ixx.ifc -interface
+    COMMAND echo [  0%]: compiling.module.release std.compat
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_SOURCE_DIR}/build/stlmodules/cache/release
+    COMMAND D:/Aps/VSPF22/PfsnPreview/VC/Tools/MSVC/14.37.32705/bin/HostX64/x64/cl.exe -nologo -O2 -fp:fast -std:c++latest -I${CMAKE_SOURCE_DIR}/include -DCURL_STATICLIB /EHsc -external:W0 -external:IC:/Users/liu01/AppData/Local/.xmake/packages/c/coost/v3.0.0/8740acc100024f88bd62575f6add4dcd/include -external:W0 -external:IC:/Users/liu01/AppData/Local/.xmake/packages/l/libcurl/8.0.1/ea95e137fcdc4a45bfe90148d97ee824/include -external:W0 -external:IC:/Users/liu01/AppData/Local/.xmake/packages/o/openssl/1.1.1-t/9458079689e342b58f2f2e8d4b2fb860/include -experimental:module /utf-8 -DNDEBUG -TP -c D:/Aps/VSPF22/PfsnPreview/VC/Tools/MSVC/14.37.32705/modules/std.compat.ixx -Fo${CMAKE_SOURCE_DIR}/build/stlmodules/cache/release/std.compat.ixx.ifc.obj -ifcOutput ${CMAKE_SOURCE_DIR}/build/stlmodules/cache/release/std.compat.ixx.ifc -interface -reference std=${CMAKE_SOURCE_DIR}/build/stlmodules/cache/release/std.ixx.ifc
     VERBATIM
 )
-add_custom_target(target_pjc1_8F0AB1F5
-    DEPENDS output_pjc1_8F0AB1F5
+add_custom_target(target_pjc1_1F9C35D2
+    DEPENDS output_pjc1_1F9C35D2
 )
-add_dependencies(pjc1 target_pjc1_8F0AB1F5)
+add_dependencies(pjc1 target_pjc1_1F9C35D2)
 target_include_directories(pjc1 PRIVATE
     include
 )
@@ -50,7 +54,7 @@ else()
     target_compile_options(pjc1 PRIVATE -fcxx-exceptions)
 endif()
 set_target_properties(pjc1 PROPERTIES CXX_EXTENSIONS OFF)
-target_compile_features(pjc1 PRIVATE cxx_std_20)
+target_compile_features(pjc1 PRIVATE cxx_std_23)
 if(MSVC)
     target_compile_options(pjc1 PRIVATE $<$<CONFIG:Release>:-Ox -fp:fast>)
 else()
@@ -75,10 +79,12 @@ target_link_libraries(pjc1 PRIVATE
     winmm
     ws2_32
     user32
+    kernel32
+    ntdll
 )
 target_link_libraries(pjc1 PRIVATE
     ${CMAKE_SOURCE_DIR}/build/.objs/pjc1/windows/x64/release/src/main.ixx.obj
-    ${CMAKE_SOURCE_DIR}/build/.objs/pjc1/windows/x64/release/src/test/test.ixx.obj
+    ${CMAKE_SOURCE_DIR}/build/.objs/pjc1/windows/x64/release/src/impl/sort.ixx.obj
 )
 target_link_directories(pjc1 PRIVATE
     C:/Users/liu01/AppData/Local/.xmake/packages/c/coost/v3.0.0/8740acc100024f88bd62575f6add4dcd/lib
